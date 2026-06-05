@@ -1,4 +1,3 @@
-// app/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -38,7 +37,6 @@ const useScrollAnimation = () => {
 };
 
 // Animation variants
-// 2. Add the : Variants type annotation to your objects
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -80,7 +78,13 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Features', 'How It Works', 'For Dalalis', 'Contact'];
+  // Id za link zimebaki kwa kiingereza ili kuzuia kuvunja vizuizi vya href anchor, lakini majina yamebadilika
+  const navLinks = [
+    { name: 'Sifa Zetu', id: 'features' },
+    { name: 'Inavyofanya Kazi', id: 'how-it-works' },
+    { name: 'Kwa Madalali', id: 'for-dalalis' },
+    { name: 'Wasiliana Nasi', id: 'contact' }
+  ];
 
   return (
     <motion.nav
@@ -99,12 +103,11 @@ const Navigation = () => {
           >
             <Image
               src="/logo.png"
-              alt="Nyumba Connect Logo"
+              alt="Nembo ya Nyumba Connect"
               width={32}
               height={32}
               className="object-contain"
             />
-
             <span
               className="font-bold text-xl"
               style={{ color: "#00B34A" }}
@@ -117,8 +120,8 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link, index) => (
               <motion.a
-                key={link}
-                href={`#${link.toLowerCase().replace(/\s/g, '-')}`}
+                key={link.id}
+                href={`#${link.id}`}
                 className="text-sm font-medium transition-colors hover:opacity-70"
                 style={{ color: '#191c1e' }}
                 whileHover={{ y: -2 }}
@@ -126,7 +129,7 @@ const Navigation = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                {link}
+                {link.name}
               </motion.a>
             ))}
             <motion.button
@@ -135,7 +138,7 @@ const Navigation = () => {
               className="px-5 py-2 rounded-full font-semibold transition-all shadow-md hover:shadow-xl"
               style={{ backgroundColor: '#006b2c', color: '#ffffff' }}
             >
-              Get Started
+              Anza Sasa
             </motion.button>
           </div>
 
@@ -160,20 +163,20 @@ const Navigation = () => {
         <div className="px-4 py-4 space-y-3">
           {navLinks.map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, '-')}`}
+              key={link.id}
+              href={`#${link.id}`}
               className="block py-2 text-base font-medium transition-colors hover:opacity-70"
               style={{ color: '#191c1e' }}
               onClick={() => setIsOpen(false)}
             >
-              {link}
+              {link.name}
             </a>
           ))}
           <button
             className="w-full px-5 py-2 rounded-full font-semibold transition-all"
             style={{ backgroundColor: '#006b2c', color: '#ffffff' }}
           >
-            Get Started
+            Anza Sasa
           </button>
         </div>
       </motion.div>
@@ -194,7 +197,7 @@ const Hero = () => {
           >
             <motion.div variants={fadeUp}>
               <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold mb-4" style={{ backgroundColor: '#7ffc97', color: '#002109' }}>
-                Coming Soon on Android
+                Inakuja Hivi Karibuni kwenye Android
               </span>
             </motion.div>
             <motion.h1
@@ -202,17 +205,17 @@ const Hero = () => {
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
               style={{ color: '#191c1e' }}
             >
-              Find Your Perfect{' '}
-              <span style={{ color: '#006b2c' }}>Student Home</span>{' '}
-              with Ease
+              Pata Chumba au{' '}
+              <span style={{ color: '#006b2c' }}>Hostel Bora</span>{' '}
+              kwa Urahisi
             </motion.h1>
             <motion.p
               variants={fadeUp}
               className="text-lg mb-8"
               style={{ color: '#3e4a3d' }}
             >
-              Nyumba Connect bridges the gap between students, real estate agents (Dalalis),
-              and property owners. Discover, connect, and secure your ideal accommodation effortlessly.
+              Nyumba Connect inaziba ufa kati ya wanafunzi, madalali, na wamiliki wa nyumba. 
+              Tafuta, wasiliana, na uhakikishe malazi yako unayotaka bila usumbufu.
             </motion.p>
             <motion.div
               variants={fadeUp}
@@ -224,7 +227,7 @@ const Hero = () => {
                 className="px-8 py-3 rounded-full font-semibold flex items-center justify-center gap-2 shadow-lg transition-all"
                 style={{ backgroundColor: '#006b2c', color: '#ffffff' }}
               >
-                Get Early Access <ArrowRight size={18} />
+                Wahi Nafasi Mapema <ArrowRight size={18} />
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -232,7 +235,7 @@ const Hero = () => {
                 className="px-8 py-3 rounded-full font-semibold transition-all border-2"
                 style={{ borderColor: '#006b2c', color: '#006b2c' }}
               >
-                Watch Demo
+                Angalia Demo
               </motion.button>
             </motion.div>
             <motion.div
@@ -252,7 +255,7 @@ const Hero = () => {
                     <Star key={i} size={16} fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-sm" style={{ color: '#3e4a3d' }}>Trusted by 500+ students</p>
+                <p className="text-sm" style={{ color: '#3e4a3d' }}>Inaaminiwa na wanafunzi 500+</p>
               </div>
             </motion.div>
           </motion.div>
@@ -267,7 +270,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-linear-to-tr from-[#006b2c]/20 to-transparent"></div>
               <Image
                 src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=800&fit=crop"
-                alt="Student housing platform preview"
+                alt="Muonekano wa jukwaa la malazi ya wanafunzi"
                 width={600}
                 height={800}
                 className="w-full h-auto rounded-3xl"
@@ -277,8 +280,8 @@ const Hero = () => {
                   <Search size={18} color="white" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold" style={{ color: '#191c1e' }}>Find your room</p>
-                  <p className="text-xs" style={{ color: '#3e4a3d' }}>Searching in Dar es Salaam...</p>
+                  <p className="text-sm font-semibold" style={{ color: '#191c1e' }}>Tafuta chumba chako</p>
+                  <p className="text-xs" style={{ color: '#3e4a3d' }}>Inatafuta Dar es Salaam...</p>
                 </div>
               </div>
             </div>
@@ -294,10 +297,10 @@ const Features = () => {
   const { ref, controls } = useScrollAnimation();
 
   const features = [
-    { icon: Search, title: 'Smart Search', description: 'Filter by location, price, amenities, and more to find your perfect match.', color: '#006b2c' },
-    { icon: MessageCircle, title: 'Instant Chat', description: 'Communicate directly with Dalalis and property owners in real-time.', color: '#00873a' },
-    { icon: Shield, title: 'Verified Listings', description: 'All properties are verified to ensure safety and authenticity.', color: '#006b2c' },
-    { icon: Zap, title: 'Fast Booking', description: 'Secure your room quickly with our streamlined booking process.', color: '#00873a' },
+    { icon: Search, title: 'Utafutaji Mahiri', description: 'Chuja kwa eneo, bei, huduma, na vinginevyo ili kupata chumba kinachokufaa.', color: '#006b2c' },
+    { icon: MessageCircle, title: 'Chat ya Papo Hapo', description: 'Wasiliana moja kwa moja na Madalali pamoja na wamiliki wa nyumba kwa wakati halisi.', color: '#00873a' },
+    { icon: Shield, title: 'Vyumba Vilivyothibitishwa', description: 'Nyumba na hostel zote zinahakikiwa ili kuhakikisha usalama na ukweli wake.', color: '#006b2c' },
+    { icon: Zap, title: 'Kuweka Nafasi Haraka', description: 'Linda chumba chako haraka sana kupitia mfumo wetu uliorahisishwa.', color: '#00873a' },
   ];
 
   return (
@@ -311,11 +314,11 @@ const Features = () => {
           className="text-center mb-12"
         >
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#191c1e' }}>
-            Why Choose{' '}
-            <span style={{ color: '#006b2c' }}>Nyumba Connect</span>
+            Kwa Nini Uichague{' '}
+            <span style={{ color: '#006b2c' }}>Nyumba Connect?</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="text-lg max-w-2xl mx-auto" style={{ color: '#3e4a3d' }}>
-            We make finding student housing simple, transparent, and hassle-free
+            Tunafanya utafutaji wa malazi ya wanafunzi kuwa rahisi, wa wazi, na usio na usumbufu
           </motion.p>
         </motion.div>
 
@@ -349,10 +352,10 @@ const HowItWorks = () => {
   const { ref, controls } = useScrollAnimation();
 
   const steps = [
-    { step: '01', title: 'Search & Filter', description: 'Browse hundreds of properties with advanced filters to find what you need.', icon: Search },
-    { step: '02', title: 'Connect & Chat', description: 'Message Dalalis directly to ask questions and schedule viewings.', icon: MessageCircle },
-    { step: '03', title: 'Visit & Choose', description: 'Tour properties and select the one that feels like home.', icon: Home },
-    { step: '04', title: 'Move In', description: 'Complete paperwork digitally and move into your new space.', icon: CheckCircle },
+    { step: '01', title: 'Tafuta & Chuja', description: 'Kagua mamia ya vyumba ukitumia vichujio vya kisasa ili kupata unachotaka.', icon: Search },
+    { step: '02', title: 'Ungana & Chati', description: 'Mtumie ujumbe Dalali moja kwa moja kuuliza maswali na kupanga siku ya kuona chumba.', icon: MessageCircle },
+    { step: '03', title: 'Tembelea & Chagua', description: 'Kagua chumba na uchague kile kinachokupa hisia za nyumbani.', icon: Home },
+    { step: '04', title: 'Hama', description: 'Kamilisha taratibu kidijitali na uhamie kwenye makazi yako mapya.', icon: CheckCircle },
   ];
 
   return (
@@ -366,11 +369,11 @@ const HowItWorks = () => {
           className="text-center mb-12"
         >
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#191c1e' }}>
-            How{' '}
-            <span style={{ color: '#006b2c' }}>It Works</span>
+            Inavyofanya{' '}
+            <span style={{ color: '#006b2c' }}>Kazi</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="text-lg max-w-2xl mx-auto" style={{ color: '#3e4a3d' }}>
-            Simple steps to find your perfect student accommodation
+            Hatua rahisi za kupata malazi kamili ya mwanafunzi
           </motion.p>
         </motion.div>
 
@@ -410,12 +413,12 @@ const ForDalalis = () => {
   const { ref, controls } = useScrollAnimation();
 
   const benefits = [
-    'Post unlimited property listings',
-    'Manage leads from a centralized dashboard',
-    'Instant notifications for new inquiries',
-    'Analytics and performance tracking',
-    'Verified agent badge for trust',
-    'Priority customer support',
+    'Weka idadi isiyo na kikomo ya vyumba',
+    'Simamia wateja wako kutoka sehemu moja',
+    'Taarifa za papo hapo kwa kila mteja mpya',
+    'Takwimu na ufuatiliaji wa utendaji kazi',
+    'Beji ya Uthibitisho ili kujenga uaminifu',
+    'Msaada wa kipaumbele kwa wateja',
   ];
 
   return (
@@ -429,15 +432,15 @@ const ForDalalis = () => {
             animate={controls}
           >
             <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold mb-4" style={{ backgroundColor: '#6bff8f', color: '#002109' }}>
-              For Dalalis & Agents
+              Kwa Madalali & Mawakala
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#191c1e' }}>
-              Grow Your{' '}
-              <span style={{ color: '#006e2f' }}>Real Estate Business</span>
+              Kuza Biashara Yako{' '}
+              <span style={{ color: '#006e2f' }}>ya Majengo</span>
             </h2>
             <p className="text-lg mb-6" style={{ color: '#3e4a3d' }}>
-              Join hundreds of Dalalis who are already using Nyumba Connect to list properties,
-              connect with students, and close deals faster than ever before.
+              Ungana na mamia ya Madalali ambao tayari wanatumia Nyumba Connect kuweka vyumba, 
+              kuungana na wanafunzi, na kukamilisha mikataba haraka kuliko kawaida.
             </p>
             <div className="space-y-3 mb-8">
               {benefits.map((benefit, index) => (
@@ -460,7 +463,7 @@ const ForDalalis = () => {
               className="px-8 py-3 rounded-full font-semibold flex items-center gap-2 shadow-lg"
               style={{ backgroundColor: '#006e2f', color: '#ffffff' }}
             >
-              Become a Partner <ArrowRight size={18} />
+              Kuwa Mshirika Wetu <ArrowRight size={18} />
             </motion.button>
           </motion.div>
 
@@ -473,7 +476,7 @@ const ForDalalis = () => {
             <div className="bg-linear-to-br rounded-3xl p-8" style={{ backgroundColor: '#eceef0' }}>
               <Image
                 src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&h=600&fit=crop"
-                alt="Dalali dashboard preview"
+                alt="Muonekano wa dashibodi ya dalali"
                 width={500}
                 height={600}
                 className="w-full h-auto rounded-2xl shadow-2xl"
@@ -494,9 +497,9 @@ const Testimonials = () => {
   const { ref, controls } = useScrollAnimation();
 
   const testimonials = [
-    { name: 'Sarah M.', role: 'Student, University of Dar', text: 'Nyumba Connect made finding my first apartment so easy! The chat feature helped me negotiate directly with the Dalali.', rating: 5 },
-    { name: 'Juma K.', role: 'Real Estate Agent', text: 'As a Dalali, I love how simple it is to manage leads. I closed 3 deals in my first month on the platform!', rating: 5 },
-    { name: 'Amina T.', role: 'Property Owner', text: 'Finding responsible student tenants has never been easier. The platform saves me so much time and effort.', rating: 5 },
+    { name: 'Sarah M.', role: 'Mwanafunzi, Chuo Kikuu cha Dar (UDSM)', text: 'Nyumba Connect ilifanya utafutaji wa chumba changu cha kwanza kuwa rahisi sana! Mfumo wa chat ulinisaidia kujadili bei moja kwa moja na Dalali.', rating: 5 },
+    { name: 'Juma K.', role: 'Dalali wa Majengo', text: 'Kama dalali, napenda sana jinsi ilivyo rahisi kusimamia wateja. Nilikamilisha dili 3 katika mwezi wangu wa kwanza jukwaani!', rating: 5 },
+    { name: 'Amina T.', role: 'Mmiliki wa Nyumba', text: 'Kupata wapangaji wanafunzi waaminifu haijawahi kuwa rahisi hivi. Jukwaa hili linaniokolea muda mwingi na nguvu.', rating: 5 },
   ];
 
   return (
@@ -510,11 +513,11 @@ const Testimonials = () => {
           className="text-center mb-12"
         >
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#191c1e' }}>
-            What Our{' '}
-            <span style={{ color: '#006b2c' }}>Users Say</span>
+            Maoni ya{' '}
+            <span style={{ color: '#006b2c' }}>Watumiaji Wetu</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="text-lg max-w-2xl mx-auto" style={{ color: '#3e4a3d' }}>
-            Real stories from students and Dalalis who found success with Nyumba Connect
+            Simulizi halisi kutoka kwa wanafunzi na madalali waliopata mafanikio kupitia Nyumba Connect
           </motion.p>
         </motion.div>
 
@@ -561,11 +564,11 @@ const CTA = () => {
           animate={controls}
         >
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#ffffff' }}>
-            Ready to Find Your Perfect Home?
+            Uko Tayari Kupata Nyumba yako Bora?
           </motion.h2>
           <motion.p variants={fadeUp} className="text-lg mb-8 max-w-2xl mx-auto opacity-90" style={{ color: '#f7fff2' }}>
-            Join thousands of students and Dalalis already using Nyumba Connect.
-            Get early access to our Android app today!
+            Ungana na maelfu ya wanafunzi na madalali ambao tayari wanatumia Nyumba Connect. 
+            Wahi nafasi ya mapema kupata app yetu ya Android leo!
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
@@ -575,7 +578,7 @@ const CTA = () => {
               style={{ backgroundColor: '#ffffff', color: '#006b2c' }}
             >
               <Smartphone size={18} />
-              Get Early Access
+              Wahi Nafasi Mapema
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -583,7 +586,7 @@ const CTA = () => {
               className="px-8 py-3 rounded-full font-semibold border-2 border-white transition-all"
               style={{ color: '#ffffff' }}
             >
-              Learn More
+              Jifunze Zaidi
             </motion.button>
           </motion.div>
         </motion.div>
@@ -602,7 +605,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <Image
                 src="/logo.png"
-                alt="Nyumba Connect Logo"
+                alt="Nembo ya Nyumba Connect"
                 width={32}
                 height={32}
                 className="object-contain"
@@ -610,20 +613,20 @@ const Footer = () => {
               <span className="font-bold text-xl" style={{ color: '#ffffff' }}>Nyumba Connect</span>
             </div>
             <p className="text-sm opacity-70" style={{ color: '#eff1f3' }}>
-              Modern digital real estate and student housing platform connecting tenants with Dalalis and property owners.
+              Jukwaa la kisasa la kidijitali la majengo na malazi ya wanafunzi linalowaunganisha wapangaji na Madalali pamoja na wamiliki wa nyumba.
             </p>
           </div>
           <div>
-            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Quick Links</h4>
+            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Viungo vya Haraka</h4>
             <ul className="space-y-2 text-sm opacity-70" style={{ color: '#eff1f3' }}>
-              <li><a href="#features" className="hover:opacity-100 transition">Features</a></li>
-              <li><a href="#how-it-works" className="hover:opacity-100 transition">How It Works</a></li>
-              <li><a href="#for-dalalis" className="hover:opacity-100 transition">For Dalalis</a></li>
-              <li><a href="#" className="hover:opacity-100 transition">Pricing</a></li>
+              <li><a href="#features" className="hover:opacity-100 transition">Sifa Zetu</a></li>
+              <li><a href="#how-it-works" className="hover:opacity-100 transition">Inavyofanya Kazi</a></li>
+              <li><a href="#for-dalalis" className="hover:opacity-100 transition">Kwa Madalali</a></li>
+              <li><a href="#" className="hover:opacity-100 transition">Bei zetu</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Contact</h4>
+            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Mawasiliano</h4>
             <ul className="space-y-2 text-sm opacity-70" style={{ color: '#eff1f3' }}>
               <li className="flex items-center gap-2"><Mail size={14} /> hello@nyumbaconnect.com</li>
               <li className="flex items-center gap-2"><Phone size={14} /> +255 123 456 789</li>
@@ -631,17 +634,17 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Download App</h4>
+            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Pakua App</h4>
             <div className="space-y-2">
               <motion.button whileHover={{ scale: 1.05 }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 backdrop-blur w-full">
                 <Smartphone size={18} style={{ color: '#62df7d' }} />
-                <span className="text-sm" style={{ color: '#ffffff' }}>Coming Soon on Android</span>
+                <span className="text-sm" style={{ color: '#ffffff' }}>Inakuja Karibuni kwenye Android</span>
               </motion.button>
             </div>
           </div>
         </div>
         <div className="pt-8 text-center text-sm opacity-60" style={{ color: '#eff1f3' }}>
-          <p>&copy; 2024 Nyumba Connect. All rights reserved. Built for students and Dalalis in Tanzania.</p>
+          <p>&copy; 2026 Nyumba Connect. Haki zote zimehifadhiwa. Imeundwa kwa ajili ya wanafunzi na Madalali nchini Tanzania.</p>
         </div>
       </div>
     </footer>

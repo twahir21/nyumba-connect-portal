@@ -11,11 +11,21 @@ const sour = Sour_Gummy({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nyumba-connect.co.tz"), 
-  title: "Nyumba Connect | Find Your Perfect Student Home in Tanzania",
-  description: "Nyumba Connect bridges the gap between students, property owners, and Dalalis in Tanzania. Discover, connect, and secure verified student accommodation effortlessly.",
+  metadataBase: new URL("https://nyumba-connect.co.tz"),
+  title: "Nyumba Connect | Pata Nyumba au Hostel Bora ya Wanafunzi Tanzania",
+  description: "Nyumba Connect inakutanisha wanafunzi, wamiliki wa nyumba, na madalali nchini Tanzania. Tafuta, wasiliana, na lipia malazi yaliyothibitishwa kwa wanafunzi kwa urahisi.",
   keywords: [
     "Nyumba Connect",
+    "hostel za wanafunzi Tanzania",
+    "hostel Dar es Salaam",
+    "tafuta hostel za wanafunzi",
+    "app ya dalali Tanzania",
+    "malazi ya chuo",
+    "hostel za UDSM",
+    "hostel za IFM",
+    "panga chumba Dar es Salaam",
+    "nyumba zilizothibitishwa dalali",
+    "vyumba vya kupanga wanafunzi",
     "student housing Tanzania",
     "hostels in Dar es Salaam",
     "find student accommodation",
@@ -26,7 +36,7 @@ export const metadata: Metadata = {
     "rent room Dar es Salaam",
     "verified listings dalali"
   ],
-  authors: [{ name: "Nyumba Connect Team" }],
+  authors: [{ name: "Timu ya Nyumba Connect" }],
   creator: "Nyumba Connect",
   publisher: "Nyumba Connect",
   formatDetection: {
@@ -38,26 +48,26 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Nyumba Connect | Find Your Perfect Student Home with Ease",
-    description: "Discover, connect, and secure your ideal student accommodation effortlessly. Connecting students, real estate agents (Dalalis), and property owners in Tanzania.",
+    title: "Nyumba Connect | Pata Hostel ya Wanafunzi kwa Urahisi",
+    description: "Tafuta na uweke nafasi ya hostel au chumba chako cha chuo kwa urahisi. Tunawaunganisha wanafunzi, madalali, na wamiliki wa nyumba Tanzania.",
     url: "https://nyumba-connect.co.tz",
     siteName: "Nyumba Connect",
     images: [
       {
-        url: "/og-image.jpg", // Place an attractive preview image (1200x630) in your /public folder
+        url: "/og-image.png", // Weka picha ya kuvutia (1200x630) kwenye folder la /public
         width: 1200,
         height: 630,
-        alt: "Nyumba Connect Platform Preview - Student Housing Map & Chats",
+        alt: "Mwonekano wa Nyumba Connect - Ramani ya Hostel na Chat",
       },
     ],
-    locale: "en_US",
+    locale: "sw_TZ", // Imebadilishwa kwenda Kiswahili cha Tanzania
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nyumba Connect | Student Housing Made Effortless",
-    description: "Bridges the gap between students, Dalalis, and property owners in Tanzania. Find verified accommodation today.",
-    images: ["/og-image.jpg"],
+    title: "Nyumba Connect | Kupata Hostel Imekuwa Rahisi",
+    description: "Inawaunganisha wanafunzi, madalali, na wamiliki wa nyumba Tanzania. Pata malazi yaliyothibitishwa leo.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -79,7 +89,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="sw" // Imebadilishwa kutoka 'en' kwenda 'sw'
       className={`${sour.className} h-full antialiased`}
     >
       <head>
