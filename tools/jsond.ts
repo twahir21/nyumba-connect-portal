@@ -1,30 +1,32 @@
+import { PHONE, URL_LINK } from "./url.const"
+
 export const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://nyumbaconnect.com/#organization",
+        "@id": `${URL_LINK}/#organization`,
         "name": "Nyumba Connect",
-        "url": "https://nyumbaconnect.com",
-        "logo": "https://nyumbaconnect.com/logo.png",
+        "url": `${URL_LINK}`,
+        "logo": `${URL_LINK}/logo.png`,
         "sameAs": [
           "https://twitter.com/nyumbaconnect", // Adjust with real social links
           "https://linkedin.com/company/nyumbaconnect"
         ],
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "+255-123-456-789",
+          "telephone": `${PHONE}`,
           "contactType": "customer service",
-          "email": "hello@nyumbaconnect.com",
+          "email": "huduma@nyumba-connect.co.tz",
           "areaServed": "TZ",
           "availableLanguage": ["Swahili", "English"]
         }
       },
       {
         "@type": "WebApplication",
-        "@id": "https://nyumbaconnect.com/#webapp",
+        "@id": `${URL_LINK}/#webapp`,
         "name": "Nyumba Connect Platform",
-        "url": "https://nyumbaconnect.com",
+        "url": `${URL_LINK}`,
         "applicationCategory": "RealEstateApplication",
         "operatingSystem": "Android, iOS, Web",
         "description": "Modern digital real estate and student housing platform connecting tenants with Dalalis and property owners in Tanzania.",
@@ -36,7 +38,7 @@ export const jsonLd = {
       },
       {
         "@type": "FAQPage",
-        "@id": "https://nyumbaconnect.com/#faq",
+        "@id": `${URL_LINK}/#faq`,
         "mainEntity": [
           {
             "@type": "Question",

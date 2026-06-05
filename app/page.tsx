@@ -1,19 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion, useAnimation, useInView, Variants } from 'framer-motion';
 import { useRef } from 'react';
 import {
   Search,
   Home,
   MessageCircle,
-  Phone,
-  Mail,
-  MapPin,
   Star,
   ArrowRight,
-  Menu,
-  X,
   Shield,
   Zap,
   Smartphone,
@@ -63,125 +58,6 @@ const staggerContainer: Variants = {
 const scaleUp: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } }
-};
-
-// Navigation Component
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Id za link zimebaki kwa kiingereza ili kuzuia kuvunja vizuizi vya href anchor, lakini majina yamebadilika
-  const navLinks = [
-    { name: 'Sifa Zetu', id: 'features' },
-    { name: 'Inavyofanya Kazi', id: 'how-it-works' },
-    { name: 'Kwa Madalali', id: 'for-dalalis' },
-    { name: 'Wasiliana Nasi', id: 'contact' }
-  ];
-
-  return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-        }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2 cursor-pointer"
-          >
-            <Image
-              src="/logo.png"
-              alt="Nembo ya Nyumba Connect"
-              width={32}
-              height={32}
-              className="object-contain"
-            />
-            <span
-              className="font-bold text-xl"
-              style={{ color: "#00B34A" }}
-            >
-              Nyumba Connect
-            </span>
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, index) => (
-              <motion.a
-                key={link.id}
-                href={`#${link.id}`}
-                className="text-sm font-medium transition-colors hover:opacity-70"
-                style={{ color: '#191c1e' }}
-                whileHover={{ y: -2 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                {link.name}
-              </motion.a>
-            ))}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-5 py-2 rounded-full font-semibold transition-all shadow-md hover:shadow-xl"
-              style={{ backgroundColor: '#006b2c', color: '#ffffff' }}
-            >
-              Anza Sasa
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg"
-            style={{ color: '#006b2c' }}
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <motion.div
-        initial={false}
-        animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="md:hidden overflow-hidden bg-white/95 backdrop-blur-md"
-      >
-        <div className="px-4 py-4 space-y-3">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              className="block py-2 text-base font-medium transition-colors hover:opacity-70"
-              style={{ color: '#191c1e' }}
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-          <button
-            className="w-full px-5 py-2 rounded-full font-semibold transition-all"
-            style={{ backgroundColor: '#006b2c', color: '#ffffff' }}
-          >
-            Anza Sasa
-          </button>
-        </div>
-      </motion.div>
-    </motion.nav>
-  );
 };
 
 // Hero Section
@@ -595,74 +471,16 @@ const CTA = () => {
   );
 };
 
-// Footer
-const Footer = () => {
-  return (
-    <footer className="py-12" style={{ backgroundColor: '#191c1e' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Image
-                src="/logo.png"
-                alt="Nembo ya Nyumba Connect"
-                width={32}
-                height={32}
-                className="object-contain"
-              />
-              <span className="font-bold text-xl" style={{ color: '#ffffff' }}>Nyumba Connect</span>
-            </div>
-            <p className="text-sm opacity-70" style={{ color: '#eff1f3' }}>
-              Jukwaa la kisasa la kidijitali la majengo na malazi ya wanafunzi linalowaunganisha wapangaji na Madalali pamoja na wamiliki wa nyumba.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Viungo vya Haraka</h4>
-            <ul className="space-y-2 text-sm opacity-70" style={{ color: '#eff1f3' }}>
-              <li><a href="#features" className="hover:opacity-100 transition">Sifa Zetu</a></li>
-              <li><a href="#how-it-works" className="hover:opacity-100 transition">Inavyofanya Kazi</a></li>
-              <li><a href="#for-dalalis" className="hover:opacity-100 transition">Kwa Madalali</a></li>
-              <li><a href="#" className="hover:opacity-100 transition">Bei zetu</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Mawasiliano</h4>
-            <ul className="space-y-2 text-sm opacity-70" style={{ color: '#eff1f3' }}>
-              <li className="flex items-center gap-2"><Mail size={14} /> hello@nyumbaconnect.com</li>
-              <li className="flex items-center gap-2"><Phone size={14} /> +255 123 456 789</li>
-              <li className="flex items-center gap-2"><MapPin size={14} /> Dar es Salaam, Tanzania</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4" style={{ color: '#ffffff' }}>Pakua App</h4>
-            <div className="space-y-2">
-              <motion.button whileHover={{ scale: 1.05 }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 backdrop-blur w-full">
-                <Smartphone size={18} style={{ color: '#62df7d' }} />
-                <span className="text-sm" style={{ color: '#ffffff' }}>Inakuja Karibuni kwenye Android</span>
-              </motion.button>
-            </div>
-          </div>
-        </div>
-        <div className="pt-8 text-center text-sm opacity-60" style={{ color: '#eff1f3' }}>
-          <p>&copy; 2026 Nyumba Connect. Haki zote zimehifadhiwa. Imeundwa kwa ajili ya wanafunzi na Madalali nchini Tanzania.</p>
-        </div>
-      </div>
-    </footer>
-  );
-};
+
 
 // Main Page Component
 export default function Index() {
-  return (
-    <main className="overflow-x-hidden">
-      <Navigation />
+  return <>
       <Hero />
       <Features />
       <HowItWorks />
       <ForDalalis />
       <Testimonials />
       <CTA />
-      <Footer />
-    </main>
-  );
+  </>;
 }

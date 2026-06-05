@@ -1,3 +1,4 @@
+import { URL_LINK } from '@/tools/url.const';
 import { MetadataRoute } from 'next';
  
 export default function robots(): MetadataRoute.Robots {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/', '/admin/'],
     },
-    sitemap: 'https://www.nyumba-connect.co.tz/sitemap.xml',
+    sitemap: `${URL_LINK}/sitemap.xml`,
   };
 }

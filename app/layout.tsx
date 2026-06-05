@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Sour_Gummy } from "next/font/google";
 import "./globals.css";
 import { jsonLd } from "@/tools/jsond";
+import { URL_LINK } from "@/tools/url.const";
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/head";
 
 // 2. Configure a non-variable font (you must specify weights)
 const sour = Sour_Gummy({
@@ -11,7 +14,7 @@ const sour = Sour_Gummy({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nyumba-connect.co.tz"),
+  metadataBase: new URL(URL_LINK),
   title: "Nyumba Connect | Pata Nyumba au Hostel Bora ya Wanafunzi Tanzania",
   description: "Nyumba Connect inakutanisha wanafunzi, wamiliki wa nyumba, na madalali nchini Tanzania. Tafuta, wasiliana, na lipia malazi yaliyothibitishwa kwa wanafunzi kwa urahisi.",
   keywords: [
@@ -50,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nyumba Connect | Pata Hostel ya Wanafunzi kwa Urahisi",
     description: "Tafuta na uweke nafasi ya hostel au chumba chako cha chuo kwa urahisi. Tunawaunganisha wanafunzi, madalali, na wamiliki wa nyumba Tanzania.",
-    url: "https://nyumba-connect.co.tz",
+    url: URL_LINK,
     siteName: "Nyumba Connect",
     images: [
       {
@@ -98,7 +101,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <main className="overflow-x-hidden">
+          <Navigation />
+          {children}
+          <Footer />
+        </main>
+      </body>
     </html>
   );
 }
